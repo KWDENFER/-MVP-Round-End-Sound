@@ -43,6 +43,11 @@ public Action Menu_Music(int client, int args)
 	{
 		FormatEx(info, sizeof(info), "%T", "Menu_View_Other_Music_Kits", LANG_SERVER);
 		menu.AddItem("others_kits", info);
+		
+		if(g_bOther[client]) // если из просмотра чужик наборов
+		{
+			g_bOther[client] = false;
+		}
 	}
 	
 	if(gc_bVolume.BoolValue)
@@ -194,7 +199,7 @@ public int HandlerMenu_Music(Menu menu, MenuAction action, int param1, int param
 		{
 			if(param2 == MenuCancel_ExitBack)
 			{
-				Menu_Music(param1, 0);
+				Menu_YourMusicKits(param1);
 			}
 		}
 		case MenuAction_End:
@@ -322,6 +327,7 @@ public int HandlerMenu_Music(Menu menu, MenuAction action, int param1, int param
  {
 	Menu menu = new Menu(HandlerMenu_OtherComposition);
 	char info[PLATFORM_MAX_PATH];
+	g_bOther[client] = true; // плагин считает, что игрок просматривает чью-либо музыку
 	
 	FormatEx(g_sKitBuffer[client], sizeof(g_sKitBuffer[]), "%s", kit); // копируем в буфер музыкальный набор, чтоб была возможность вернуться в него, g_sKitBuffer[client] - клиент, т.к. в данном сулчае вы просматрвиаете композиции
 	
@@ -497,11 +503,17 @@ public int HandlerPanel_ShowComposition(Menu menu, MenuAction action, int param1
 			}
 			else if((StrEqual("4", info) && g_bBuy[param1]) || (StrEqual("3", info) && !g_bBuy[param1]))
 			{
-				if(g_bBuy[param1])
+				if(g_bOther[param1]) // если игрок пришел из чужого набора
+				{
+					Menu_OtherComposition(param1, g_iTarget[param1], g_sKitBuffer[param1]);
+				}
+			
+				if(g_bBuy[param1]) // если пришел из магазина
 				{
 					Menu_ShopCompositions(param1, g_sKitBuffer[param1]);
 				}
-				else
+				
+				if(!g_bBuy[param1]) // если это не оба случая сверху => игрок просматривает свои наборы
 				{
 					Menu_YourComposition(param1, g_sKitBuffer[param1]);
 				}

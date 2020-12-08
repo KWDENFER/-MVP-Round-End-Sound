@@ -513,7 +513,6 @@ stock bool SetMusicMVP(int client)
 										kv.GoBack();
 										kv.GetString(Section, buffer, sizeof(buffer));
 										FormatEx(g_sAudioPlayer, sizeof(g_sAudioPlayer), "%s", buffer);
-										
 										delete kv;
 										return true;
 									}
