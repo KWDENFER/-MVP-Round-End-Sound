@@ -33,7 +33,7 @@
 #include <denfer>
 
 // Defines
-#define MVPSOUND_VERSION "1.0"
+#define MVPSOUND_VERSION "1.1"
 #define AUTHOR 	"DENFER"
 
 // Pragma 
