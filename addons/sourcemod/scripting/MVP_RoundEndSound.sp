@@ -2,7 +2,7 @@
 * [MVP] Round End Sound
 * by: DENFER © 2020
 *
-* https://github.com/KWDENFER/AutoBalanceUE
+* https://github.com/KWDENFER/-MVP-Round-End-Sound
 * https://vk.com/denferez
 * https://steamcommunity.com/id/denferez
 *
@@ -90,6 +90,7 @@ bool g_bMVPMusic[MAXPLAYERS+1];
 bool g_bDisableMVPMusic[MAXPLAYERS+1][MAXPLAYERS+1];
 bool g_bBuy[MAXPLAYERS+1];	
 bool g_bMenuPosition[MAXPLAYERS+1];
+bool g_bOther[MAXPLAYERS+1];
 
 // My Includes Part 2
 #include <mvpsound>
