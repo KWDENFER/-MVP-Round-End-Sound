@@ -33,7 +33,7 @@
 #include <denfer>
 
 // Defines
-#define MVPSOUND_VERSION "1.1"
+#define MVPSOUND_VERSION "1.2"
 #define AUTHOR 	"DENFER"
 
 // Pragma 
@@ -226,7 +226,7 @@ public Plugin myinfo = {
 		g_hTimer = null;
 	}
 	
-	g_hTimer = CreateTimer(0.1, Timer_PlayMusic, GetClientUserId(client));
+	g_hTimer = CreateTimer(0.25, Timer_PlayMusic, GetClientUserId(client));
  }
  
  public void Event_RoundStart(Event event, const char[] name, bool dontBroadcast)
